@@ -1,4 +1,5 @@
 import { redirect } from '@sveltejs/kit';
+import { base } from '$app/paths';
 import { LANGS } from '$lib/i18n';
 
 export function entries() {
@@ -6,5 +7,5 @@ export function entries() {
 }
 
 export function load({ params }) {
-	throw redirect(307, `/${params.lang}/docs`);
+	throw redirect(307, `${base}/${params.lang}/docs`);
 }

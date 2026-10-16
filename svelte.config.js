@@ -9,6 +9,11 @@ const config = {
 	preprocess: [vitePreprocess(), mdsvex(mdsvexOptions)],
 	kit: {
 		adapter: adapter({ pages: 'build', assets: 'build', strict: true }),
+		paths: {
+			// O GitHub Pages serve projetos em /docs/; localmente fica vazio.
+			// O deploy define BASE_PATH=/docs (ver .github/workflows/deploy.yml).
+			base: process.env.BASE_PATH ?? ''
+		},
 		prerender: {
 			// Âncora órfã (link para seção inexistente) não derruba o build.
 			handleMissingId: 'warn'
